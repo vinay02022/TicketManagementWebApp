@@ -3,7 +3,9 @@ let ticketContainer=document.querySelector(".ticket-container");
 for(let i=0;i<allFilter.length;i++){
     allFilter[i].addEventListener("click",EkFunctionFire);
 
+
 }
+let isTextTyped=false;
 let ticketModalOpenClose=false;
 function EkFunctionFire(e){
     let filteredSelected=e.target.classList[1];
@@ -42,7 +44,7 @@ function openingModal(e){
     }
     let ticketModal=document.createElement("div");
     ticketModal.classList.add("ticket-modal");
-    ticketModal.innerHTML =`<div class="ticket-text" spellcheck="false" contenteditable="true"></div>
+    ticketModal.innerHTML =`<div class="ticket-text" spellcheck="false" contenteditable="true">Type Your Text !!</div>
     <div class="ticket-filters">
        <div class="tickets-filter red"></div>
        <div class="tickets-filter blue"></div>
@@ -54,13 +56,21 @@ function openingModal(e){
     //console.log(ticketModal);
     document.querySelector("body").append(ticketModal);
     ticketModalOpenClose=true;
-
-
+   let ticketTextDiv= ticketModal.querySelector(".ticket-text");
+   ticketTextDiv.addEventListener("keypress",handleKeyPress); 
 }
 function closingModal(e){
     if(ticketModalOpenClose){
         document.querySelector(".ticket-modal").remove();
+        ticketModalOpenClose=false;
+        isTextTyped=false;
     }
-    ticketModalOpenClose=false;
+    
 
+}
+function handleKeyPress(e){
+    if(!isTextTyped){
+        isTextTyped=true;
+        e.target.textContent="";
+    }
 }
