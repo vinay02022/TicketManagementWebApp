@@ -42,7 +42,7 @@ function openingModal(e){
     }
     let ticketModal=document.createElement("div");
     ticketModal.classList.add("ticket-modal");
-    ticketModal.innerHTML =`<div class="ticket-text"></div>
+    ticketModal.innerHTML =`<div class="ticket-text" spellcheck="false" contenteditable="true"></div>
     <div class="ticket-filters">
        <div class="tickets-filter red"></div>
        <div class="tickets-filter blue"></div>
